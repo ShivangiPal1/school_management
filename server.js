@@ -27,9 +27,11 @@ const startServer = async () => {
   try {
     await testDatabaseConnection();
 
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
+    if (process.env.NODE_ENV !== "production") {
+      app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+      });
+    }
   } catch (error) {
     console.error("Failed to start server:", error.message);
     process.exit(1);
@@ -37,3 +39,5 @@ const startServer = async () => {
 };
 
 startServer();
+
+export default app;

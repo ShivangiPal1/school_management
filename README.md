@@ -107,7 +107,7 @@ mysql -u root -p < sql/schema.sql
 Base URL for local development:
 
 ```text
-http://localhost:5000
+http://localhost:5001
 ```
 
 ### Health Check
