@@ -12,13 +12,17 @@ const pool = mysql.createPool({
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
-  connectTimeout: 60000
+  connectTimeout: 10000
 });
 
-export const testDatabaseConnection = async () => {
-  const connection = await pool.getConnection();
-  console.log("MySQL database connected successfully");
-  connection.release();
-};
+  export default pool;
 
-export default pool;
+  export const testDatabaseConnection = async () => {
+  try {
+    const connection = await pool.getConnection();
+    console.log("MySQL connected");
+    connection.release();
+  } catch (error) {
+    console.error("Database connection failed:", error.message);
+  }
+  };
